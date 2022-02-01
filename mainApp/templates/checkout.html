@@ -1,0 +1,119 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load cart %}
+{% block title %}
+	<title>MG Shop | CheckOut</title>
+	{% endblock %}
+{% block body %}
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Product Checkout</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+    <!--================Checkout Area =================-->
+    <section class="checkout_area section_gap">
+        <div class="container">
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="login_form_inner" style="padding-top: 15px;">
+                            <h3>Billing Details</h3>
+                            <form class="row login_form" action="/editProfile2/" method="post" id="contactForm" novalidate="novalidate" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="col-md-12 form-group">
+                                    <h6 style="text-align: left;">Name:</h6>
+                                    <input type="text" class="form-control" id="name" name="name" value="{{User.name}}">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <h6 style="text-align: left;">Email Id:</h6>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{User.email}}">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <h6 style="text-align: left;">Contact No:</h6>
+                                    <input type="text" class="form-control" id="phone" name="phone" value="{{User.phone}}">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <h6 style="text-align: left;">AddressLine1:</h6>
+                                    <input type="text" class="form-control" id="addressLine1" name="addressLine1" value="{{User.addressLine1}}">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <h6 style="text-align: left;">AddressLine2:</h6>
+                                    <input type="text" class="form-control" id="addressLine2" name="addressLine2" value="{{User.addressLine2}}">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <h6 style="text-align: left;">AddressLine3:</h6>
+                                    <input type="text" class="form-control" id="addressLine3" name="addressLine3" value="{{User.addressLine3}}">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <h6 style="text-align: left;">City:</h6>
+                                    <input type="text" class="form-control" id="city" name="city" value="{{User.city}}">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <h6 style="text-align: left;">State:</h6>
+                                    <input type="text" class="form-control" id="state" name="state" value="{{User.state}}">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <h6 style="text-align: left;">Pin Code:</h6>
+                                    <input type="text" class="form-control" id="pin" name="pin" value="{{User.pin}}">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <button type="submit" value="submit" class="primary-btn">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="order_box">
+                            <h2>Your Order</h2>
+                            <ul class="list">
+                                <li><a href="#">Product <span>Total</span></a></li>
+                                {% for i in Product %}
+                                <li><a href="#">{{i.name}}&nbsp;&nbsp;&nbsp;&nbsp;({{i.finalPrice}} x {{request|cartQuantity:i.pid}})</span> <span class="last">Rs{{request|cartTotal:i.pid}}</span></a></li>
+                                {% endfor %}
+                            </ul>
+                            <ul class="list list_2">
+                                <li><a href="#">Subtotal <span>Rs{{Total}}</span></a></li>
+                                {% if Shipping %}
+                                <li><a href="#">Shipping <span>Rs{{Shipping}}</span></a></li>
+                                {% else %}
+                                <li><a href="#">Shipping <span>Free</span></a></li>
+                                {% endif %}
+                                <li><a href="#">Total <span>Rs{{Final}}</span></a></li>
+                            </ul>
+                            <form method="post">
+                                {% csrf_token %}
+                            <div class="payment_item ">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option5" name="mode" value="cod" checked>
+                                    <label for="f-option5">COD</label>
+                                    <div class="check"></div>
+                                </div>
+                                <p>Cash On Delivery</p>
+                            </div>
+                            <div class="payment_item active">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option6" name="mode" value="razorpay">
+                                    <label for="f-option6">RazorPay </label>
+                                    <img src="{% static 'img/product/card.jpg' %}" alt="">
+                                    <div class="check"></div>
+                                </div>
+                                <p>Pay via RazorPay; you can pay with your credit card if you don’t have a RazorPay
+                                    account.</p>
+                            </div>
+                                <button class="primary-btn" style="width: 100%;border: none;">Proceed to Place Order</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Checkout Area =================-->
+{% endblock %}

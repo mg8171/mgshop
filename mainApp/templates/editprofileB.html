@@ -1,0 +1,87 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+<title>MG Shop | Edit Profile2</title>
+{% endblock %}
+{% block body %}
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Update Profile</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Login Box Area =================-->
+<section class="login_box_area section_gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="login_box_img">
+                    {% if User.pic.url %}
+                    <img class="img-fluid" style="height: 500px;" src="{{User.pic.url}}"  alt="">
+                    {% else %}
+                    <img class="img-fluid" style="height: 500px;" src="{% static 'img/noimage.png/' %}"alt="">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="login_form_inner" style="padding-top: 15px;">
+                    <h3>UPDATE ACCOUNT</h3>
+                    <form class="row login_form" action="" method="post" id="contactForm" novalidate="novalidate" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="col-md-12 form-group">
+                            <h6 style="text-align: left;">Name:</h6>
+                            <input type="text" class="form-control" id="name" name="name" value="{{User.name}}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <h6 style="text-align: left;">Email Id:</h6>
+                            <input type="email" class="form-control" id="email" name="email" value="{{User.email}}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <h6 style="text-align: left;">Contact No:</h6>
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{User.phone}}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <h6 style="text-align: left;">AddressLine1:</h6>
+                            <input type="text" class="form-control" id="addressLine1" name="addressLine1" value="{{User.addressLine1}}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <h6 style="text-align: left;">AddressLine2:</h6>
+                            <input type="text" class="form-control" id="addressLine2" name="addressLine2" value="{{User.addressLine2}}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <h6 style="text-align: left;">AddressLine3:</h6>
+                            <input type="text" class="form-control" id="addressLine3" name="addressLine3" value="{{User.addressLine3}}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <h6 style="text-align: left;">City:</h6>
+                            <input type="text" class="form-control" id="city" name="city" value="{{User.city}}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <h6 style="text-align: left;">State:</h6>
+                            <input type="text" class="form-control" id="state" name="state" value="{{User.state}}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <h6 style="text-align: left;">Pin Code:</h6>
+                            <input type="text" class="form-control" id="pin" name="pin" value="{{User.pin}}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <h6 style="text-align: left;">Update Profile Pic:</h6>
+                            <input type="file" class="form-control" id="pic" name="pic">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <button type="submit" value="submit" class="primary-btn">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Login Box Area =================-->
+{% endblock %}

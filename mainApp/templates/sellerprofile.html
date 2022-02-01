@@ -1,0 +1,136 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+	<title>MG Shop | Profile</title>
+	{% endblock %}
+{% block body %}
+	<!-- Start Banner Area -->
+	<section class="banner-area organic-breadcrumb">
+		<div class="container">
+			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+				<div class="col-first">
+					<h1>Seller Profile</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+    <!--================Cart Area =================-->
+    <section class="login_box_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="login_box_img">
+                        {% if User.pic.url %}
+                        <img class="img-fluid" style="height: 500px;" src="{{User.pic.url}}"  alt="">
+                        {% else %}
+                        <img class="img-fluid" style="height: 500px;" src="{% static 'img/noimage.png/' %}"alt="">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="login_form_inner" style="padding-top: 30px;">
+                        <h3>SELLER DETAILS</h3>
+                        <form class="row login_form" action="/editProfile/" >
+                            <div class="col-md-12 form-group">
+                               <h6 style="text-align: left;">Name:</h6>
+                               <h4 class="form-control">{{User.name}}</h4>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <h6 style="text-align: left;">User Name:</h6>
+                                <h4 class="form-control" >{{User.username}}</h4>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <h6 style="text-align: left;">Email Id:</h6>
+                                <h4 class="form-control">{{User.email}}</h4>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <h6 style="text-align: left;">Contact No:</h6>
+                                <h4 class="form-control">{{User.phone}}</h4>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <button type="submit" value="submit" class="primary-btn">Edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div style="text-align:center">
+        <a style="width: 70%;text-align: center;" class="primary-btn" href="/addproduct/">Add Product</a>
+    </div>
+
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product Pic</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Base Price</th>
+                                <th scope="col">Discount</th>
+                                <th scope="col">Final Price</th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in Product %}
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            {% if i.pic1 %}
+                                            <img src="{{i.pic1.url}}" style="width: 150px; height: 150px;" alt="">
+                                            {% else %}
+                                            <img src="{% static 'img/noimage.png/' %}" style="width: 150px; height: 150px;" alt="">
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>{{i.name}}</h5>
+                                </td>
+                                <td>
+                                    <h5>Rs {{i.basePrice}}</h5>
+                                </td>
+                                <td>
+                                    <h5>{{i.discount}}%</h5>
+                                </td>
+                                <td>
+                                    <h5>Rs {{i.finalPrice}}</h5>
+                                </td>
+                                <td>
+                                    <h5>{{i.color}}</h5>
+                                </td>
+                                <td>
+                                    <h5>{{i.number}}</h5>
+                                </td>
+                                <td>
+                                    {% if i.stock %}
+                                    <h5>In Stock</h5>
+                                    {% else %}
+                                    <h5>Out of Stock</h5>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a class="primary-btn" href="/editProduct/{{i.pid}}/">Edit</a>
+                                </td>
+                                <td>
+                                     <a class="primary-btn" href="/deleteProduct/{{i.pid}}" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Cart Area =================-->
+{% endblock %}

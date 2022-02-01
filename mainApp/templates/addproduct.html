@@ -1,0 +1,105 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+	<title>MG Shop | Add Product</title>
+	{% endblock %}
+{% block body %}
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Add Product</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+    <!--================Checkout Area =================-->
+    <section class="checkout_area section_gap">
+        <div class="container">
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3>Product Details</h3>
+                        <form class="row contact_form" action="#" method="post" novalidate="novalidate" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col-md-12 form-group p_star">
+                                <h6>Name</h6>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Product Name">
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                <h6>Base Price</h6>
+                                <input type="number" class="form-control" id="basePrice" name="basePrice" placeholder="Product Base Price">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <h6>Discount</h6>
+                                <input type="number" class="form-control" id="discount" name="discount" placeholder="Product Discount">
+                            </div>
+                            <div class="col-md-3 form-group p_star">
+                                <h6>Main Category</h6>
+                                <select class="country_select" name="mc">
+                                    {% for i in MC %}
+                                    <option value="{{i.name}}">{{i.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group p_star">
+                                <h6>Sub Category</h6>
+                                <select class="country_select" name="sc">
+                                    {% for i in SC %}
+                                    <option value="{{i.name}}">{{i.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group p_star">
+                                <h6>Brand</h6>
+                                <select class="country_select" name="br">
+                                    {% for i in BR %}
+                                    <option value="{{i.name}}">{{i.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group p_star">
+                                <h6>In Stock</h6>
+                                <select class="country_select" name="stock">
+                                    <option value="True">Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <h6>Description</h6>
+                                <textarea class="form-control" name="desc" id="desc" rows="1" placeholder="Write Product Descriptions"></textarea>
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <h6>Specification</h6>
+                                <textarea class="form-control" name="specification" id="specification" rows="1" placeholder="Write Product Specifications"></textarea>
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                <h6>Color</h6>
+                                <input type="text" class="form-control" id="color" name="color" placeholder="Enter Color Name">
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                <h6>Size</h6>
+                                <input type="number" class="form-control" id="number" name="number" placeholder="Number">
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                <h6>Upload Pictures</h6>
+                                <input type="file" name="pic1" id="pic1">
+                                <input type="file" name="pic2" id="pic2">
+                                <input type="file" name="pic3" id="pic3">
+                                <input type="file" name="pic4" id="pic4">
+                                <input type="file" name="pic5" id="pic5">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <button type="submit" value="submit" class="primary-btn">Add Product</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Checkout Area =================-->
+{% endblock %}

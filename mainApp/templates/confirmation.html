@@ -1,0 +1,138 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load cart %}
+{% block title %}
+	<title>MG Shop | Confirmation</title>
+	{% endblock %}
+{% block body %}
+	<!-- Start Banner Area -->
+	<section class="banner-area organic-breadcrumb">
+		<div class="container">
+			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+				<div class="col-first">
+					<h1>Confirmation</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+	<!--================Order Details Area =================-->
+	<section class="order_details section_gap">
+		<div class="container">
+			<h3 class="title_confirmation">Thank you. Your order has been received.</h3>
+			<div class="row order_d_inner">
+				<div class="col-lg-4">
+					<div class="details_item">
+						<h4>Order Info</h4>
+						<ul class="list">
+							<li><a href="#"><span>Order number</span> : {{OrderNo}}</a></li>
+							<li><a href="#"><span>Date</span> : Los Angeles</a></li>
+							<li><a href="#"><span>Total</span> : Rs {{Final}}</a></li>
+							<li><a href="#"><span>Payment method</span> : {{Method}}</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="details_item">
+						<h4>Billing Address</h4>
+						<ul class="list">
+							<li><a href="#"><span>Name</span> : {{Buyer.name}}</a></li>
+							<li><a href="#"><span>Email Id</span> : {{Buyer.email}}</a></li>
+							<li><a href="#"><span>Contact No</span> : {{Buyer.phone}}</a></li>
+							<li><a href="#"><span>Address Line1</span> : {{Buyer.addressLine1}}</a></li>
+							<li><a href="#"><span>Address Line2</span> : {{Buyer.addressLine2}}</a></li>
+							<li><a href="#"><span>Address Line3</span> : {{Buyer.addressLine3}}</a></li>
+							<li><a href="#"><span>City</span> : {{Buyer.city}}</a></li>
+							<li><a href="#"><span>State</span> : {{Buyer.state}}</a></li>
+							<li><a href="#"><span>Pincode </span> : {{Buyer.pin}}</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="details_item">
+						<h4>Shipping Address</h4>
+						<ul class="list">
+							<li><a href="#"><span>Name</span> : {{Buyer.name}}</a></li>
+							<li><a href="#"><span>Email Id</span> : {{Buyer.email}}</a></li>
+							<li><a href="#"><span>Contact No</span> : {{Buyer.phone}}</a></li>
+							<li><a href="#"><span>Address Line1</span> : {{Buyer.addressLine1}}</a></li>
+							<li><a href="#"><span>Address Line2</span> : {{Buyer.addressLine2}}</a></li>
+							<li><a href="#"><span>Address Line3</span> : {{Buyer.addressLine3}}</a></li>
+							<li><a href="#"><span>City</span> : {{Buyer.city}}</a></li>
+							<li><a href="#"><span>State</span> : {{Buyer.state}}</a></li>
+							<li><a href="#"><span>Pincode </span> : {{Buyer.pin}}</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="order_details_table">
+				<h2>Order Details</h2>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Product</th>
+								<th scope="col">Quantity</th>
+								<th scope="col">Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for i in Product %}
+							<tr>
+								<td>
+									<p>{{i.name}}</p>
+								</td>
+								<td>
+									<h5>x {{request|cartQuantity:i.pid}}</h5>
+								</td>
+								<td>
+									<p>Rs {{request|cartTotal:i.pid}}</p>
+								</td>
+							</tr>
+							{% endfor %}
+							<tr>
+								<td>
+									<h4>Subtotal</h4>
+								</td>
+								<td>
+									<h5></h5>
+								</td>
+								<td>
+									<p>Rs {{Total}}</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h4>Shipping</h4>
+								</td>
+								<td>
+									<h5></h5>
+								</td>
+								<td>
+									{% if Shipping %}
+                                    <p>Rs{{Shipping}}</p>
+                                    {% else %}
+                                    <p>Free</p>
+                                    {% endif %}
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h4>Total</h4>
+								</td>
+								<td>
+									<h5></h5>
+								</td>
+								<td>
+									<p>Rs {{Final}}</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Order Details Area =================-->
+{% endblock %}
