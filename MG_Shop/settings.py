@@ -131,10 +131,10 @@ MEDIA_URL = '/media/'
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mgshopsdjango@gmail.com'
-EMAIL_HOST_PASSWORD = 'Mohit@817'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-RAZORPAY_API_KEY = 'rzp_test_c4AHAzwiR0v4wx'
-RAZORPAY_API_SECRET_KEY ='zAsazmHiuerVjwIdv93yHQBB'
+RAZORPAY_API_KEY = ''
+RAZORPAY_API_SECRET_KEY =''
